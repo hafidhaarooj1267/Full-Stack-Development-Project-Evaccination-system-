@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog | ImmunoTrack</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/frontend.css">
+    <!-- <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #F8F5FF;
+            color: #1E1A3E;
+        }
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 40px;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(12px);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid #E9E4FF;
+        }
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(135deg, #5B2EFF, #3B1CC6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .logo i { color: #5B2EFF; margin-right: 6px; }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+            align-items: center;
+        }
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 500;
+            color: #2D2A4A;
+            transition: 0.2s;
+        }
+        .nav-links a:hover, .nav-links a.active { color: #5B2EFF; }
+        .btn-nav {
+            background: linear-gradient(135deg, #5B2EFF, #3B1CC6);
+            color: white !important;
+            padding: 8px 20px;
+            border-radius: 40px;
+        }
+        .container { max-width: 1200px; margin: 0 auto; padding: 40px 30px; }
+        .page-header {
+            text-align: center;
+            margin-bottom: 50px;
+            animation: fadeIn 0.6s;
+        }
+        .page-header h1 {
+            font-size: 2.8rem;
+            background: linear-gradient(135deg, #5B2EFF, #3B1CC6);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+        .blog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 35px;
+        }
+        .blog-card {
+            background: white;
+            border-radius: 28px;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.05);
+            animation: slideUp 0.5s backwards;
+        }
+        .blog-card:nth-child(1) { animation-delay: 0.1s; }
+        .blog-card:nth-child(2) { animation-delay: 0.2s; }
+        .blog-card:nth-child(3) { animation-delay: 0.3s; }
+        .blog-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 25px 35px rgba(91,46,255,0.15);
+        }
+        .blog-img {
+            background: linear-gradient(135deg, #5B2EFF, #7B5CFF);
+            height: 180px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+        }
+        .blog-content {
+            padding: 24px;
+        }
+        .blog-content h3 {
+            font-size: 1.4rem;
+            margin-bottom: 8px;
+        }
+        .blog-meta {
+            color: #8D86B0;
+            font-size: 0.8rem;
+            margin-bottom: 12px;
+            display: flex;
+            gap: 15px;
+        }
+        .blog-content p {
+            color: #5A577A;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+        .read-more {
+            color: #5B2EFF;
+            text-decoration: none;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+        footer {
+            background: #1E1A3E;
+            color: #CCC8FF;
+            text-align: center;
+            padding: 25px;
+            margin-top: 60px;
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @media (max-width: 800px) {
+            .navbar { flex-direction: column; gap: 15px; }
+            .nav-links { flex-wrap: wrap; justify-content: center; }
+        }
+    </style> -->
+</head>
+
+<body>
+    <nav class="navbar">
+        <div class="logo"><i class="fas fa-shield-virus"></i> ImmunoTrack</div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="services.html">Services</a></li>
+            <li><a href="blog.html" class="active">Blog</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="register.html" class="btn-nav">Register</a></li>
+        </ul>
+    </nav>
+    <div class="container">
+        <div class="page-header">
+            <h1>Vaccination Insights</h1>
+            <p>Stay informed with latest articles & tips</p>
+        </div>
+        <div class="blog-grid">
+            <div class="blog-card">
+                <div class="blog-img"><i class="fas fa-baby-carriage"></i></div>
+                <div class="blog-content">
+                    <h3>Why timely vaccination matters</h3>
+                    <div class="blog-meta"><span><i class="fas fa-calendar"></i> May 1, 2025</span><span><i
+                                class="fas fa-user-md"></i> Dr. Ayesha</span></div>
+                    <p>Delaying vaccines can put children at risk. Learn the ideal schedule for DTP, MMR and Polio...
+                    </p>
+                    <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-img"><i class="fas fa-syringe"></i></div>
+                <div class="blog-content">
+                    <h3>New vaccine guidelines 2025</h3>
+                    <div class="blog-meta"><span><i class="fas fa-calendar"></i> Apr 20, 2025</span><span><i
+                                class="fas fa-hospital"></i> WHO</span></div>
+                    <p>Updated recommendations for Hepatitis B booster and rotavirus vaccine introduction.</p>
+                    <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+            <div class="blog-card">
+                <div class="blog-img"><i class="fas fa-heartbeat"></i></div>
+                <div class="blog-content">
+                    <h3>How to soothe your baby after vaccination</h3>
+                    <div class="blog-meta"><span><i class="fas fa-calendar"></i> Apr 5, 2025</span><span><i
+                                class="fas fa-user-md"></i> Nurse Sarah</span></div>
+                    <p>Practical tips to comfort infants and manage mild side effects after shots.</p>
+                    <a href="#" class="read-more">Read more <i class="fas fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>© 2025 ImmunoTrack - Smart Vaccination Ecosystem | All Rights Reserved</p>
+    </footer>
+    <script src="/js/frontend.js"></script>
+</body>
+
+</html>

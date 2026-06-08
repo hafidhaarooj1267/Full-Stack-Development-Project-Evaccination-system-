@@ -1,0 +1,624 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Appointment | E-Vaccination</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    <!-- Flatpickr for date picker -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <!-- <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #F5F3FF;
+            color: #2D2A4A;
+        }
+
+        h1, h2, h3, h4 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Sidebar */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(135deg, #5B2EFF, #3B1CC6);
+            color: white;
+            padding: 25px 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            padding: 12px 25px;
+            margin: 5px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li i {
+            width: 22px;
+        }
+
+        .sidebar ul li:hover {
+            background: rgba(255,255,255,0.2);
+        }
+
+        .sidebar ul li.active {
+            background: rgba(255,255,255,0.25);
+            border-left: 4px solid white;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 30px 40px;
+        }
+
+        .page-header h1 {
+            font-size: 1.8rem;
+            color: #3B1CC6;
+            margin-bottom: 25px;
+        }
+
+        /* Booking Wizard Steps */
+        .steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .step {
+            flex: 1;
+            text-align: center;
+            position: relative;
+            z-index: 1;
+        }
+
+        .step-circle {
+            width: 40px;
+            height: 40px;
+            background: #E9E4FF;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            color: #5B2EFF;
+            margin-bottom: 8px;
+        }
+
+        .step.active .step-circle {
+            background: #5B2EFF;
+            color: white;
+        }
+
+        .step.completed .step-circle {
+            background: #17C3B2;
+            color: white;
+        }
+
+        .step-label {
+            font-size: 0.85rem;
+            color: #6B6A8A;
+        }
+
+        .step.active .step-label {
+            color: #5B2EFF;
+            font-weight: 600;
+        }
+
+        /* Step Content */
+        .step-content {
+            background: white;
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 5px 20px rgba(91,46,255,0.1);
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: #2D2A4A;
+        }
+
+        select, input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #DDD6FE;
+            border-radius: 10px;
+            font-size: 1rem;
+            background: white;
+        }
+
+        .vaccine-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .vaccine-card {
+            flex: 1;
+            min-width: 150px;
+            background: #F9F8FF;
+            border: 2px solid #E9E4FF;
+            border-radius: 12px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .vaccine-card.selected {
+            border-color: #5B2EFF;
+            background: #F0ECFF;
+        }
+
+        .hospital-card {
+            border: 1px solid #E9E4FF;
+            padding: 15px;
+            border-radius: 12px;
+            margin-bottom: 12px;
+            cursor: pointer;
+        }
+
+        .hospital-card.selected {
+            border-color: #5B2EFF;
+            background: #F9F8FF;
+        }
+
+        .time-slots {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-top: 15px;
+        }
+
+        .time-slot {
+            background: #F0ECFF;
+            padding: 8px 16px;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .time-slot.selected {
+            background: #5B2EFF;
+            color: white;
+        }
+
+        .btn-next, .btn-prev, .btn-confirm {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .btn-next {
+            background: #5B2EFF;
+            color: white;
+        }
+
+        .btn-prev {
+            background: #E9E4FF;
+            color: #2D2A4A;
+        }
+
+        .btn-confirm {
+            background: #17C3B2;
+            color: white;
+        }
+
+        .summary-details {
+            background: #F9F8FF;
+            padding: 20px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+        }
+
+        .summary-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #E9E4FF;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 70px;
+            }
+            .sidebar h2, .sidebar ul li span {
+                display: none;
+            }
+            .main-content {
+                margin-left: 70px;
+                padding: 20px;
+            }
+            .vaccine-options {
+                flex-direction: column;
+            }
+        }
+    </style> -->
+</head>
+
+<body>
+    <div class="animated-bg"></div>
+<div class="floating-shapes">
+    <div class="shape-bg-1"></div>
+    <div class="shape-bg-2"></div>
+    <div class="shape-bg-3"></div>
+    <div class="shape-bg-4"></div>
+</div>
+
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2><i class="fas fa-syringe"></i> VaxCare</h2>
+            <ul>
+                <li><a href="/pages/Book Appointment.html"><i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a></li>
+
+                <li><a href="/pages/My Children.html"><i class="fas fa-child"></i> <span>My Children</span></a></li>
+                <li><a href="/pages/Book Appointment.html"><i class="fas fa-calendar-check"></i> <span>Book
+                            Appointment</span></a></li>
+                <li class="active"><a href="/pages/Vaccination Histor.html"><i class="fas fa-history"></i>
+                        <span>Vaccination History</span></a></li>
+                <li onclick="logout()"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></li>
+
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="page-header">
+                <h1><i class="fas fa-calendar-plus"></i> Book Vaccination Appointment</h1>
+            </div>
+
+            <!-- Steps Indicator -->
+            <div class="steps">
+                <div class="step active" id="step1Indicator">
+                    <div class="step-circle">1</div>
+                    <div class="step-label">Select Child</div>
+                </div>
+                <div class="step" id="step2Indicator">
+                    <div class="step-circle">2</div>
+                    <div class="step-label">Choose Vaccine</div>
+                </div>
+                <div class="step" id="step3Indicator">
+                    <div class="step-circle">3</div>
+                    <div class="step-label">Pick Hospital</div>
+                </div>
+                <div class="step" id="step4Indicator">
+                    <div class="step-circle">4</div>
+                    <div class="step-label">Date & Time</div>
+                </div>
+                <div class="step" id="step5Indicator">
+                    <div class="step-circle">5</div>
+                    <div class="step-label">Confirm</div>
+                </div>
+            </div>
+
+            <!-- Step 1: Select Child -->
+            <div id="step1" class="step-content">
+                <h3>Select your child</h3>
+                <div class="form-group">
+                    <select id="childSelect">
+                        <option value="">-- Choose Child --</option>
+                    </select>
+                </div>
+                <button class="btn-next" onclick="nextStep(1)">Next <i class="fas fa-arrow-right"></i></button>
+            </div>
+
+            <!-- Step 2: Choose Vaccine -->
+            <div id="step2" class="step-content" style="display:none;">
+                <h3>Select Vaccine</h3>
+                <div class="vaccine-options" id="vaccineOptions">
+                    <!-- Dynamic from JS -->
+                </div>
+                <div style="margin-top: 20px;">
+                    <button class="btn-prev" onclick="prevStep(2)"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button class="btn-next" onclick="nextStep(2)">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 3: Pick Hospital -->
+            <div id="step3" class="step-content" style="display:none;">
+                <h3>Select Hospital</h3>
+                <div id="hospitalList"></div>
+                <div style="margin-top: 20px;">
+                    <button class="btn-prev" onclick="prevStep(3)"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button class="btn-next" onclick="nextStep(3)">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 4: Date & Time -->
+            <div id="step4" class="step-content" style="display:none;">
+                <h3>Select Date & Time Slot</h3>
+                <div class="form-group">
+                    <label>Date:</label>
+                    <input type="date" id="appointmentDate" min="">
+                </div>
+                <div class="form-group">
+                    <label>Time Slot:</label>
+                    <div class="time-slots" id="timeSlots">
+                        <div class="time-slot" data-time="09:00 AM">09:00 AM</div>
+                        <div class="time-slot" data-time="10:00 AM">10:00 AM</div>
+                        <div class="time-slot" data-time="11:00 AM">11:00 AM</div>
+                        <div class="time-slot" data-time="02:00 PM">02:00 PM</div>
+                        <div class="time-slot" data-time="03:00 PM">03:00 PM</div>
+                        <div class="time-slot" data-time="04:00 PM">04:00 PM</div>
+                    </div>
+                </div>
+                <div style="margin-top: 20px;">
+                    <button class="btn-prev" onclick="prevStep(4)"><i class="fas fa-arrow-left"></i> Back</button>
+                    <button class="btn-next" onclick="nextStep(4)">Next <i class="fas fa-arrow-right"></i></button>
+                </div>
+            </div>
+
+            <!-- Step 5: Confirm -->
+            <div id="step5" class="step-content" style="display:none;">
+                <h3>Confirm Appointment</h3>
+                <div class="summary-details" id="summary"></div>
+                <button class="btn-prev" onclick="prevStep(5)"><i class="fas fa-arrow-left"></i> Back</button>
+                <button class="btn-confirm" onclick="confirmBooking()"><i class="fas fa-check-circle"></i> Confirm
+                    Booking</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <!-- <script>
+        // Sample Data (same as My Children page would have)
+        let children = [
+            { id: 1, name: "Aisha Khan", dob: "2022-03-15" },
+            { id: 2, name: "Rayan Ahmed", dob: "2023-07-20" }
+        ];
+
+        let vaccines = [
+            { id: 1, name: "DTP Vaccine", description: "Diphtheria, Tetanus, Pertussis" },
+            { id: 2, name: "MMR Vaccine", description: "Measles, Mumps, Rubella" },
+            { id: 3, name: "Polio Drops", description: "Oral Polio Vaccine" },
+            { id: 4, name: "Hepatitis B", description: "Hepatitis B Vaccine" },
+            { id: 5, name: "Flu Shot", description: "Influenza Vaccine" }
+        ];
+
+        let hospitals = [
+            { id: 1, name: "City Hospital", address: "123 Health St, Downtown", phone: "555-1234" },
+            { id: 2, name: "Green Valley Medical", address: "456 Wellness Ave, Westside", phone: "555-9876" },
+            { id: 3, name: "Sunrise Clinic", address: "789 Care Lane, Eastside", phone: "555-4567" }
+        ];
+
+        // Booking data
+        let selectedChild = null;
+        let selectedVaccine = null;
+        let selectedHospital = null;
+        let selectedDate = null;
+        let selectedTime = null;
+
+        // Populate child dropdown
+        function populateChildren() {
+            let select = document.getElementById("childSelect");
+            select.innerHTML = '<option value="">-- Choose Child --</option>';
+            children.forEach(child => {
+                let option = document.createElement("option");
+                option.value = child.id;
+                option.textContent = child.name;
+                select.appendChild(option);
+            });
+        }
+
+        // Render vaccine options
+        function renderVaccines() {
+            let container = document.getElementById("vaccineOptions");
+            container.innerHTML = "";
+            vaccines.forEach(v => {
+                let div = document.createElement("div");
+                div.className = "vaccine-card";
+                div.setAttribute("data-id", v.id);
+                div.innerHTML = `<strong>${v.name}</strong><br><small>${v.description}</small>`;
+                div.onclick = () => {
+                    document.querySelectorAll(".vaccine-card").forEach(c => c.classList.remove("selected"));
+                    div.classList.add("selected");
+                    selectedVaccine = v;
+                };
+                container.appendChild(div);
+            });
+        }
+
+        // Render hospitals
+        function renderHospitals() {
+            let container = document.getElementById("hospitalList");
+            container.innerHTML = "";
+            hospitals.forEach(h => {
+                let div = document.createElement("div");
+                div.className = "hospital-card";
+                div.innerHTML = `<strong>${h.name}</strong><br>📍 ${h.address}<br>📞 ${h.phone}`;
+                div.onclick = () => {
+                    document.querySelectorAll(".hospital-card").forEach(c => c.classList.remove("selected"));
+                    div.classList.add("selected");
+                    selectedHospital = h;
+                };
+                container.appendChild(div);
+            });
+        }
+
+        // Time slot selection
+        function bindTimeSlots() {
+            let slots = document.querySelectorAll(".time-slot");
+            slots.forEach(slot => {
+                slot.onclick = () => {
+                    slots.forEach(s => s.classList.remove("selected"));
+                    slot.classList.add("selected");
+                    selectedTime = slot.getAttribute("data-time");
+                };
+            });
+        }
+
+        // Step navigation
+        let currentStep = 1;
+
+        function showStep(step) {
+            for (let i = 1; i <= 5; i++) {
+                let el = document.getElementById(`step${i}`);
+                if (el) el.style.display = i === step ? "block" : "none";
+            }
+            // Update step indicators
+            for (let i = 1; i <= 5; i++) {
+                let ind = document.getElementById(`step${i}Indicator`);
+                if (ind) {
+                    if (i < step) ind.classList.add("completed");
+                    else ind.classList.remove("completed");
+                    if (i === step) ind.classList.add("active");
+                    else ind.classList.remove("active");
+                }
+            }
+            currentStep = step;
+        }
+
+        function validateStep(step) {
+            if (step === 1) {
+                let childId = document.getElementById("childSelect").value;
+                if (!childId) { alert("Please select a child."); return false; }
+                selectedChild = children.find(c => c.id == childId);
+                return true;
+            }
+            if (step === 2) {
+                if (!selectedVaccine) { alert("Please select a vaccine."); return false; }
+                return true;
+            }
+            if (step === 3) {
+                if (!selectedHospital) { alert("Please select a hospital."); return false; }
+                return true;
+            }
+            if (step === 4) {
+                let date = document.getElementById("appointmentDate").value;
+                if (!date) { alert("Please select a date."); return false; }
+                if (!selectedTime) { alert("Please select a time slot."); return false; }
+                selectedDate = date;
+                return true;
+            }
+            return true;
+        }
+
+        function nextStep(step) {
+            if (validateStep(step)) {
+                if (step === 4) {
+                    // Before going to step 5, build summary
+                    buildSummary();
+                }
+                if (step + 1 <= 5) showStep(step + 1);
+            }
+        }
+
+        function prevStep(step) {
+            if (step - 1 >= 1) showStep(step - 1);
+        }
+
+        function buildSummary() {
+            let summaryDiv = document.getElementById("summary");
+            summaryDiv.innerHTML = `
+            <div class="summary-row"><strong>Child:</strong> ${selectedChild.name}</div>
+            <div class="summary-row"><strong>Vaccine:</strong> ${selectedVaccine.name}</div>
+            <div class="summary-row"><strong>Hospital:</strong> ${selectedHospital.name}</div>
+            <div class="summary-row"><strong>Address:</strong> ${selectedHospital.address}</div>
+            <div class="summary-row"><strong>Date:</strong> ${selectedDate}</div>
+            <div class="summary-row"><strong>Time:</strong> ${selectedTime}</div>
+        `;
+        }
+
+        function confirmBooking() {
+            // Store in localStorage or show alert
+            let bookings = JSON.parse(localStorage.getItem("appointments") || "[]");
+            let newBooking = {
+                id: Date.now(),
+                childId: selectedChild.id,
+                childName: selectedChild.name,
+                vaccine: selectedVaccine.name,
+                hospital: selectedHospital.name,
+                date: selectedDate,
+                time: selectedTime,
+                status: "Scheduled"
+            };
+            bookings.push(newBooking);
+            localStorage.setItem("appointments", JSON.stringify(bookings));
+            alert("✅ Appointment booked successfully!");
+            // Reset and go to first step
+            resetBooking();
+            showStep(1);
+        }
+
+        function resetBooking() {
+            selectedChild = null;
+            selectedVaccine = null;
+            selectedHospital = null;
+            selectedDate = null;
+            selectedTime = null;
+            document.getElementById("childSelect").value = "";
+            document.querySelectorAll(".vaccine-card").forEach(c => c.classList.remove("selected"));
+            document.querySelectorAll(".hospital-card").forEach(c => c.classList.remove("selected"));
+            document.querySelectorAll(".time-slot").forEach(c => c.classList.remove("selected"));
+            document.getElementById("appointmentDate").value = "";
+        }
+
+        // Set min date to today
+        let today = new Date().toISOString().split('T')[0];
+        document.getElementById("appointmentDate").min = today;
+
+        // Initialization
+        populateChildren();
+        renderVaccines();
+        renderHospitals();
+        bindTimeSlots();
+        showStep(1);
+    </script> -->
+
+    <script src="/js/dashboard.js"></script>
+</body>
+
+</html>

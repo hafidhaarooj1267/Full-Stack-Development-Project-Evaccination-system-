@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Children | E-Vaccination</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <!-- <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #F5F3FF;
+            color: #2D2A4A;
+        }
+
+        h1,
+        h2,
+        h3,
+        h4 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Sidebar */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(135deg, #5B2EFF, #3B1CC6);
+            color: white;
+            padding: 25px 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            padding: 12px 25px;
+            margin: 5px 0;
+            cursor: pointer;
+            transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+        }
+
+        .sidebar ul li i {
+            width: 22px;
+        }
+
+        .sidebar ul li:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .sidebar ul li.active {
+            background: rgba(255, 255, 255, 0.25);
+            border-left: 4px solid white;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 30px 40px;
+        }
+
+        /* Header */
+        .page-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        .page-header h1 {
+            font-size: 1.8rem;
+            color: #3B1CC6;
+        }
+
+        .btn-add {
+            background: #5B2EFF;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .btn-add i {
+            margin-right: 8px;
+        }
+
+        .btn-add:hover {
+            background: #3B1CC6;
+            transform: scale(1.02);
+        }
+
+        /* Children Grid */
+        .children-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .child-card {
+            background: white;
+            border-radius: 16px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(91, 46, 255, 0.1);
+            transition: 0.3s;
+            border: 1px solid #E9E4FF;
+        }
+
+        .child-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(91, 46, 255, 0.2);
+        }
+
+        .child-avatar {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .avatar-icon {
+            background: linear-gradient(135deg, #5B2EFF, #7B40FF);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2rem;
+            color: white;
+        }
+
+        .child-info h3 {
+            font-size: 1.2rem;
+            color: #2D2A4A;
+        }
+
+        .child-info p {
+            color: #6B6A8A;
+            font-size: 0.85rem;
+        }
+
+        .details {
+            margin-top: 15px;
+            border-top: 1px solid #F0ECFF;
+            padding-top: 12px;
+        }
+
+        .detail-row {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+            font-size: 0.9rem;
+        }
+
+        .progress-bar {
+            background: #EDE8FF;
+            border-radius: 10px;
+            height: 8px;
+            width: 100%;
+            margin: 10px 0;
+        }
+
+        .progress-fill {
+            background: #5B2EFF;
+            width: 0%;
+            height: 8px;
+            border-radius: 10px;
+        }
+
+        .card-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-top: 15px;
+        }
+
+        .card-buttons button {
+            background: none;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+            padding: 5px;
+            transition: 0.2s;
+        }
+
+        .btn-edit {
+            color: #5B2EFF;
+        }
+
+        .btn-delete {
+            color: #FF6B6B;
+        }
+
+        .btn-history {
+            color: #17C3B2;
+        }
+
+        /* Modal (Add/Edit Child) */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            width: 90%;
+            max-width: 450px;
+            border-radius: 20px;
+            padding: 25px;
+        }
+
+        .modal-content h2 {
+            margin-bottom: 15px;
+            color: #3B1CC6;
+        }
+
+        .modal-content input,
+        .modal-content select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #DDD6FE;
+            border-radius: 8px;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .modal-buttons button {
+            padding: 8px 16px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        .btn-save {
+            background: #5B2EFF;
+            color: white;
+        }
+
+        .btn-cancel {
+            background: #E9E4FF;
+            color: #2D2A4A;
+        }
+
+        /* Empty state */
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            background: white;
+            border-radius: 20px;
+            color: #6B6A8A;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 70px;
+                overflow-x: hidden;
+            }
+
+            .sidebar h2,
+            .sidebar ul li span {
+                display: none;
+            }
+
+            .sidebar ul li i {
+                margin: 0 auto;
+            }
+
+            .main-content {
+                margin-left: 70px;
+                padding: 20px;
+            }
+
+            .children-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style> -->
+</head>
+
+<body><div class="animated-bg"></div>
+<div class="floating-shapes">
+    <div class="shape-bg-1"></div>
+    <div class="shape-bg-2"></div>
+    <div class="shape-bg-3"></div>
+    <div class="shape-bg-4"></div>
+</div>
+
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2><i class="fas fa-syringe"></i> VaxCare</h2>
+            <ul>
+                <li><a href="/pages/Book Appointment.html"><i class="fas fa-tachometer-alt"></i>
+                        <span>Dashboard</span></a></li>
+
+                <li><a href="/pages/My Children.html"><i class="fas fa-child"></i> <span>My Children</span></a></li>
+                <li><a href="/pages/Book Appointment.html"><i class="fas fa-calendar-check"></i> <span>Book
+                            Appointment</span></a></li>
+                <li class="active"><a href="/pages/Vaccination Histor.html"><i class="fas fa-history"></i>
+                        <span>Vaccination History</span></a></li>
+                <li onclick="logout()"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></li>
+
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="page-header">
+                <h1><i class="fas fa-child"></i> My Children</h1>
+                <button class="btn-add" id="openAddModalBtn"><i class="fas fa-plus"></i> Add Child</button>
+            </div>
+
+            <div id="childrenContainer" class="children-grid">
+                <!-- Dynamic children cards will appear here -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="childModal" class="modal">
+        <div class="modal-content">
+            <h2 id="modalTitle">Add New Child</h2>
+            <input type="text" id="childName" placeholder="Child's Full Name" required>
+            <input type="date" id="childDOB" required>
+            <select id="childBloodGroup">
+                <option value="">Select Blood Group</option>
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>O+</option>
+                <option>O-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+            </select>
+            <input type="text" id="childAllergies" placeholder="Allergies (if any)">
+            <div class="modal-buttons">
+                <button class="btn-cancel" id="closeModalBtn">Cancel</button>
+                <button class="btn-save" id="saveChildBtn">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script>
+        // Sample initial data
+        let children = [
+            { id: 1, name: "Aisha Khan", dob: "2022-03-15", bloodGroup: "B+", allergies: "None", vaccinesCompleted: 4, totalVaccines: 8 },
+            { id: 2, name: "Rayan Ahmed", dob: "2023-07-20", bloodGroup: "O+", allergies: "Peanuts", vaccinesCompleted: 2, totalVaccines: 8 }
+        ];
+
+        let editId = null;
+
+        function calculateAge(dob) {
+            let birthDate = new Date(dob);
+            let diff = new Date() - birthDate;
+            let ageDate = new Date(diff);
+            return Math.abs(ageDate.getUTCFullYear() - 1970) + " years";
+        }
+
+        function renderChildren() {
+            let container = document.getElementById("childrenContainer");
+            if (children.length === 0) {
+                container.innerHTML = `<div class="empty-state"><i class="fas fa-child fa-3x"></i><p>No children added yet. Click "Add Child" to start.</p></div>`;
+                return;
+            }
+            container.innerHTML = children.map(child => {
+                let age = calculateAge(child.dob);
+                let percent = (child.vaccinesCompleted / child.totalVaccines) * 100;
+                return `
+                <div class="child-card" data-id="${child.id}">
+                    <div class="child-avatar">
+                        <div class="avatar-icon"><i class="fas fa-baby"></i></div>
+                        <div class="child-info">
+                            <h3>${child.name}</h3>
+                            <p><i class="fas fa-calendar-alt"></i> ${age}</p>
+                        </div>
+                    </div>
+                    <div class="details">
+                        <div class="detail-row"><span>Blood Group:</span><strong>${child.bloodGroup}</strong></div>
+                        <div class="detail-row"><span>Allergies:</span><strong>${child.allergies}</strong></div>
+                        <div class="detail-row"><span>Vaccination Progress:</span><span>${child.vaccinesCompleted}/${child.totalVaccines}</span></div>
+                        <div class="progress-bar"><div class="progress-fill" style="width: ${percent}%;"></div></div>
+                    </div>
+                    <div class="card-buttons">
+                        <button class="btn-history" onclick="viewHistory(${child.id})"><i class="fas fa-eye"></i> History</button>
+                        <button class="btn-edit" onclick="editChild(${child.id})"><i class="fas fa-edit"></i></button>
+                        <button class="btn-delete" onclick="deleteChild(${child.id})"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>
+            `;
+            }).join('');
+        }
+
+        function openModal(isEdit = false) {
+            document.getElementById("childModal").style.display = "flex";
+            if (!isEdit) {
+                document.getElementById("modalTitle").innerText = "Add New Child";
+                document.getElementById("childName").value = "";
+                document.getElementById("childDOB").value = "";
+                document.getElementById("childBloodGroup").value = "";
+                document.getElementById("childAllergies").value = "";
+                editId = null;
+            }
+        }
+
+        function saveChild() {
+            let name = document.getElementById("childName").value.trim();
+            let dob = document.getElementById("childDOB").value;
+            let bloodGroup = document.getElementById("childBloodGroup").value;
+            let allergies = document.getElementById("childAllergies").value.trim();
+
+            if (!name || !dob || !bloodGroup) {
+                alert("Please fill all required fields.");
+                return;
+            }
+
+            if (editId !== null) {
+                // Edit existing
+                let index = children.findIndex(c => c.id === editId);
+                if (index !== -1) {
+                    children[index] = { ...children[index], name, dob, bloodGroup, allergies };
+                }
+            } else {
+                // Add new
+                let newId = children.length > 0 ? Math.max(...children.map(c => c.id)) + 1 : 1;
+                children.push({
+                    id: newId,
+                    name,
+                    dob,
+                    bloodGroup,
+                    allergies: allergies || "None",
+                    vaccinesCompleted: 0,
+                    totalVaccines: 8
+                });
+            }
+            renderChildren();
+            closeModal();
+        }
+
+        function editChild(id) {
+            let child = children.find(c => c.id === id);
+            if (child) {
+                editId = id;
+                document.getElementById("modalTitle").innerText = "Edit Child";
+                document.getElementById("childName").value = child.name;
+                document.getElementById("childDOB").value = child.dob;
+                document.getElementById("childBloodGroup").value = child.bloodGroup;
+                document.getElementById("childAllergies").value = child.allergies;
+                openModal(true);
+            }
+        }
+
+        function deleteChild(id) {
+            if (confirm("Are you sure you want to delete this child?")) {
+                children = children.filter(c => c.id !== id);
+                renderChildren();
+            }
+        }
+
+        function viewHistory(id) {
+            alert("Vaccination history will be shown here. (Coming soon)");
+            // redirect to history page with child id
+        }
+
+        function closeModal() {
+            document.getElementById("childModal").style.display = "none";
+        }
+
+        // Event listeners
+        document.getElementById("openAddModalBtn").onclick = () => openModal(false);
+        document.getElementById("saveChildBtn").onclick = saveChild;
+        document.getElementById("closeModalBtn").onclick = closeModal;
+        window.onclick = function (e) {
+            if (e.target === document.getElementById("childModal")) closeModal();
+        };
+
+        renderChildren();
+    </script> -->
+    <script src="/js/dashboard.js"></script>
+</body>
+
+</html>

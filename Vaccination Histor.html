@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vaccination History | E-Vaccination</title>
+
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <!-- Google Fonts -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&family=Open+Sans:wght@400;500&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="/css/dashboard.css">
+    <!-- <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: #F5F3FF;
+            color: #2D2A4A;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: 'Poppins', sans-serif;
+        }
+
+        /* Sidebar */
+        .dashboard {
+            display: flex;
+            min-height: 100vh;
+        }
+
+        .sidebar {
+            width: 260px;
+            background: linear-gradient(135deg, #5B2EFF, #3B1CC6);
+            color: white;
+            padding: 25px 0;
+            position: fixed;
+            height: 100vh;
+            overflow-y: auto;
+        }
+
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1.5rem;
+            font-weight: 600;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            padding: 12px 25px;
+            margin: 5px 0;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            font-size: 1rem;
+            transition: 0.3s;
+        }
+
+        .sidebar ul li i {
+            width: 22px;
+        }
+
+        .sidebar ul li:hover {
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .sidebar ul li.active {
+            background: rgba(255, 255, 255, 0.25);
+            border-left: 4px solid white;
+        }
+
+        /* Main Content */
+        .main-content {
+            flex: 1;
+            margin-left: 260px;
+            padding: 30px 40px;
+        }
+
+        .page-header h1 {
+            font-size: 1.8rem;
+            color: #3B1CC6;
+            margin-bottom: 25px;
+        }
+
+        /* Filters */
+        .filters {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 25px;
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .filter-group {
+            flex: 1;
+            min-width: 150px;
+        }
+
+        .filter-group label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 5px;
+            color: #5B2EFF;
+        }
+
+        .filter-group select,
+        .filter-group input {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #DDD6FE;
+            border-radius: 8px;
+        }
+
+        .btn-filter {
+            background: #5B2EFF;
+            color: white;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
+
+        /* Stats Cards */
+        .stats {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .stat-card {
+            background: white;
+            padding: 15px 25px;
+            border-radius: 12px;
+            flex: 1;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        }
+
+        .stat-number {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: #5B2EFF;
+        }
+
+        /* Table */
+        .history-table {
+            background: white;
+            border-radius: 16px;
+            overflow-x: auto;
+            box-shadow: 0 5px 15px rgba(91, 46, 255, 0.08);
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th {
+            background: #F0ECFF;
+            padding: 15px;
+            text-align: left;
+            font-weight: 600;
+            color: #3B1CC6;
+        }
+
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #EDE8FF;
+        }
+
+        .status-badge {
+            display: inline-block;
+            padding: 5px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .status-scheduled {
+            background: #FFF3E0;
+            color: #FF9800;
+        }
+
+        .status-completed {
+            background: #E0F7E8;
+            color: #28A745;
+        }
+
+        .status-missed {
+            background: #FFE6E6;
+            color: #FF6B6B;
+        }
+
+        .btn-print {
+            background: none;
+            border: none;
+            color: #5B2EFF;
+            cursor: pointer;
+            font-size: 1.1rem;
+        }
+
+        .empty-state {
+            text-align: center;
+            padding: 50px;
+            color: #6B6A8A;
+        }
+
+        @media (max-width: 768px) {
+            .sidebar {
+                width: 70px;
+            }
+
+            .sidebar h2,
+            .sidebar ul li span {
+                display: none;
+            }
+
+            .main-content {
+                margin-left: 70px;
+                padding: 20px;
+            }
+
+            .filters {
+                flex-direction: column;
+            }
+        }
+    </style> -->
+</head>
+
+<body>
+<div class="animated-bg"></div>
+<div class="floating-shapes">
+    <div class="shape-bg-1"></div>
+    <div class="shape-bg-2"></div>
+    <div class="shape-bg-3"></div>
+    <div class="shape-bg-4"></div>
+</div>
+    <div class="dashboard">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <h2><i class="fas fa-syringe"></i> VaxCare</h2>
+            <ul>
+                <li><a href="/pages/My Children.html"><i class="fas fa-child"></i> <span>My Children</span></a></li>
+                <li><a href="/pages/Book Appointment.html"><i class="fas fa-calendar-check"></i> <span>Book
+                            Appointment</span></a></li>
+                <li class="active"><a href="/pages/Vaccination Histor.html"><i class="fas fa-history"></i>
+                        <span>Vaccination History</span></a></li>
+                <li onclick="logout()"><i class="fas fa-sign-out-alt"></i> <span>Logout</span></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="page-header">
+                <h1><i class="fas fa-history"></i> Vaccination History</h1>
+            </div>
+
+            <!-- Stats Summary -->
+            <div class="stats" id="statsContainer">
+                <div class="stat-card">
+                    <div class="stat-number" id="totalCount">0</div>
+                    <div>Total Appointments</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="completedCount">0</div>
+                    <div>Completed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number" id="scheduledCount">0</div>
+                    <div>Scheduled</div>
+                </div>
+            </div>
+
+            <!-- Filters -->
+            <div class="filters">
+                <div class="filter-group">
+                    <label>Filter by Child</label>
+                    <select id="filterChild">
+                        <option value="all">All Children</option>
+                    </select>
+                </div>
+                <div class="filter-group">
+                    <label>Filter by Status</label>
+                    <select id="filterStatus">
+                        <option value="all">All</option>
+                        <option value="Scheduled">Scheduled</option>
+                        <option value="Completed">Completed</option>
+                        <option value="Missed">Missed</option>
+                    </select>
+                </div>
+                <button class="btn-filter" id="applyFilterBtn"><i class="fas fa-search"></i> Apply Filter</button>
+                <button class="btn-filter" id="printBtn" style="background:#17C3B2;"><i class="fas fa-print"></i>
+                    Print</button>
+            </div>
+
+            <!-- History Table -->
+            <div class="history-table">
+                <table id="historyTable">
+                    <thead>
+                        <tr>
+                            <th>Child Name</th>
+                            <th>Vaccine</th>
+                            <th>Hospital</th>
+                            <th>Date</th>
+                            <th>Time</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <tr>
+                            <td colspan="7" class="empty-state">No appointments found. Book your first appointment!</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- <script>
+        // Sample children list (same as my-children page)
+        let children = [
+            { id: 1, name: "Aisha Khan" },
+            { id: 2, name: "Rayan Ahmed" }
+        ];
+
+        // Load appointments from localStorage
+        function getAppointments() {
+            let saved = localStorage.getItem("appointments");
+            return saved ? JSON.parse(saved) : [];
+        }
+
+        // Save appointments (for status updates)
+        function saveAppointments(appointments) {
+            localStorage.setItem("appointments", JSON.stringify(appointments));
+        }
+
+        // Render table
+        function renderHistory() {
+            let appointments = getAppointments();
+            let filterChild = document.getElementById("filterChild").value;
+            let filterStatus = document.getElementById("filterStatus").value;
+
+            let filtered = appointments.filter(apt => {
+                if (filterChild !== "all" && apt.childId != filterChild) return false;
+                if (filterStatus !== "all" && apt.status !== filterStatus) return false;
+                return true;
+            });
+
+            // Update stats
+            let total = appointments.length;
+            let completed = appointments.filter(a => a.status === "Completed").length;
+            let scheduled = appointments.filter(a => a.status === "Scheduled").length;
+            document.getElementById("totalCount").innerText = total;
+            document.getElementById("completedCount").innerText = completed;
+            document.getElementById("scheduledCount").innerText = scheduled;
+
+            let tbody = document.getElementById("tableBody");
+            if (filtered.length === 0) {
+                tbody.innerHTML = '<tr><td colspan="7" class="empty-state">No matching appointments.</td></tr>';
+                return;
+            }
+
+            tbody.innerHTML = filtered.map(apt => {
+                let child = children.find(c => c.id == apt.childId) || { name: apt.childName || "Unknown" };
+                let statusClass = "";
+                if (apt.status === "Scheduled") statusClass = "status-scheduled";
+                else if (apt.status === "Completed") statusClass = "status-completed";
+                else statusClass = "status-missed";
+
+                return `
+                <tr>
+                    <td>${child.name}</td>
+                    <td>${apt.vaccine}</td>
+                    <td>${apt.hospital}</td>
+                    <td>${apt.date}</td>
+                    <td>${apt.time}</td>
+                    <td><span class="status-badge ${statusClass}">${apt.status}</span></td>
+                    <td>
+                        ${apt.status === "Scheduled" ? `<button class="btn-print" onclick="markCompleted(${apt.id})"><i class="fas fa-check-circle"></i> Mark Done</button>` : ''}
+                        <button class="btn-print" onclick="printCertificate(${apt.id})"><i class="fas fa-print"></i> Cert</button>
+                    </td>
+                </tr>
+            `;
+            }).join('');
+        }
+
+        // Mark appointment as completed
+        function markCompleted(id) {
+            let appointments = getAppointments();
+            let index = appointments.findIndex(a => a.id === id);
+            if (index !== -1) {
+                appointments[index].status = "Completed";
+                saveAppointments(appointments);
+                renderHistory();
+                alert("Appointment marked as Completed!");
+            }
+        }
+
+        // Print certificate (simple simulation)
+        function printCertificate(id) {
+            let appointments = getAppointments();
+            let apt = appointments.find(a => a.id === id);
+            if (apt && apt.status === "Completed") {
+                let printWindow = window.open('', '_blank');
+                printWindow.document.write(`
+                <html><head><title>Vaccination Certificate</title>
+                <style>body{font-family:Arial;padding:40px;} .cert{border:2px solid #5B2EFF;padding:30px;border-radius:20px;text-align:center;} h1{color:#5B2EFF;}</style>
+                </head><body><div class="cert">
+                <h1>Vaccination Certificate</h1>
+                <p>This certifies that <strong>${apt.childName}</strong> has received the <strong>${apt.vaccine}</strong> vaccine on <strong>${apt.date}</strong> at <strong>${apt.hospital}</strong>.</p>
+                <p>Issued by E-Vaccination System</p>
+                </div></body></html>
+            `);
+                printWindow.print();
+            } else {
+                alert("Certificate only available for completed vaccinations.");
+            }
+        }
+
+        // Populate child filter dropdown
+        function populateChildFilter() {
+            let select = document.getElementById("filterChild");
+            select.innerHTML = '<option value="all">All Children</option>';
+            children.forEach(child => {
+                let option = document.createElement("option");
+                option.value = child.id;
+                option.textContent = child.name;
+                select.appendChild(option);
+            });
+        }
+
+        // Add sample appointment if none (for demo)
+        function addSampleDataIfEmpty() {
+            let appointments = getAppointments();
+            if (appointments.length === 0) {
+                let sample = [
+                    { id: Date.now(), childId: 1, childName: "Aisha Khan", vaccine: "Polio Drops", hospital: "City Hospital", date: "2024-05-15", time: "10:00 AM", status: "Completed" },
+                    { id: Date.now() + 1, childId: 2, childName: "Rayan Ahmed", vaccine: "DTP Vaccine", hospital: "Green Valley Medical", date: "2024-06-20", time: "11:00 AM", status: "Scheduled" }
+                ];
+                localStorage.setItem("appointments", JSON.stringify(sample));
+            }
+        }
+
+        // Event listeners
+        document.getElementById("applyFilterBtn").addEventListener("click", renderHistory);
+        document.getElementById("printBtn").addEventListener("click", () => {
+            window.print();
+        });
+
+        // Initial load
+        addSampleDataIfEmpty();
+        populateChildFilter();
+        renderHistory();
+    </script> -->
+    <script src="/js/dashboard.js"></script>
+</body>
+
+</html>
