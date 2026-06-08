@@ -684,6 +684,22 @@ body {
 }
 
 /* Login/Register Containers */
+/* Login aur Register pages ki body ko center karne ke liye automatic handle */
+body:has(.login-container),
+body:has(.register-container) {
+  background: linear-gradient(145deg, #E9E4FF 0%, #F4F1FE 100%);
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 20px;
+  position: relative;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  margin-top: 0;
+}
+
+/* Base structural properties for containers */
 .login-container,
 .register-container {
   background: rgba(255, 255, 255, 0.92);
@@ -691,12 +707,13 @@ body {
   border-radius: 48px;
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1), 0 4px 12px rgba(91, 46, 255, 0.2);
   width: 460px;
-  max-width: 90%;
+  max-width: 100%;
   padding: 40px 35px;
-  margin: 50px auto;
+  z-index: 2;
   transition: transform 0.3s ease, box-shadow 0.3s;
   border: 1px solid rgba(255, 255, 255, 0.6);
   animation: fadeSlide 0.6s ease-out;
+  margin-top: 0 auto;
 }
 
 .login-container:hover,
@@ -705,30 +722,38 @@ body {
   box-shadow: 0 30px 50px rgba(91, 46, 255, 0.25);
 }
 
-h2 {
+.login-container .logo,
+.register-container .logo {
+  font-size: 2rem;
+  font-weight: 800;
+  background: var(--gradient);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.login-container h2,
+.register-container h2 {
   text-align: center;
   font-weight: 700;
   margin: 10px 0 25px;
   color: #1E1A3E;
+  background: none;
+  -webkit-background-clip: unset;
+  background-clip: unset;
 }
 
-h1,
-h2,
-.logo {
-  background: linear-gradient(135deg, #5B2EFF, #3B1CC6, #7B5CFF);
-  background-size: 200% auto;
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  animation: gradientText 4s ease infinite alternate;
-}
-
-.input-group {
+/* Inputs element structure and sizes */
+.login-container .input-group,
+.register-container .input-group {
   margin-bottom: 20px;
   position: relative;
 }
 
-.input-group i {
+.login-container .input-group i,
+.register-container .input-group i {
   position: absolute;
   left: 16px;
   top: 50%;
@@ -737,26 +762,33 @@ h2,
   font-size: 1.1rem;
 }
 
-input,
-select {
+.login-container input,
+.login-container select,
+.register-container input,
+.register-container select {
   width: 100%;
   padding: 14px 16px 14px 45px;
   border: 1px solid #DDD6FE;
-  border-radius: 30px;
+  border-radius: 40px;
+  /* Symmetrical circular capsule border */
   font-size: 1rem;
   background: white;
   transition: 0.2s;
   font-family: inherit;
 }
 
-input:focus,
-select:focus {
+.login-container input:focus,
+.login-container select:focus,
+.register-container input:focus,
+.register-container select:focus {
   outline: none;
   border-color: #5B2EFF;
   box-shadow: 0 0 0 3px rgba(91, 46, 255, 0.2);
 }
 
-.btn-login,btn-register{
+/* Authentic actionable submit nodes */
+.btn-login,
+.btn-register {
   width: 100%;
   background: var(--gradient);
   color: white;
@@ -767,18 +799,20 @@ select:focus {
   font-size: 1rem;
   cursor: pointer;
   transition: 0.3s;
-  margin-top: 5px;
+  margin-top: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 8px;
 }
 
-.btn-login:hover,.btn-register:hover {
+.btn-login:hover,
+.btn-register:hover {
   transform: scale(1.02);
   box-shadow: 0 8px 20px rgba(91, 46, 255, 0.4);
 }
 
+/* Redirectional link setups */
 .login-link,
 .register-link {
   text-align: center;
@@ -793,7 +827,37 @@ select:focus {
   font-weight: 600;
 }
 
+.login-link a:hover,
+.register-link a:hover {
+  text-decoration: underline;
+}
+
+/* Alert response wrappers */
 .error-msg {
+  color: #ebb9b9;
+  background: #FFE6E6;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  margin-top: 15px;
+  text-align: center;
+}
+
+.error-msg:empty {
+  display: none !important;
+}
+
+.success-msg {
+  color: #28A745;
+  background: #E0F7E8;
+  padding: 12px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  margin-top: 15px;
+  text-align: center;
+}
+
+/* .error-msg {
   background: #FFE6E6;
   color: #FF6B6B;
   padding: 12px;
@@ -809,7 +873,7 @@ select:focus {
   border-radius: 10px;
   text-align: center;
   margin-bottom: 15px;
-}
+} */
 
 .btn-cta {
   margin-top: 50px;
@@ -829,6 +893,7 @@ select:focus {
   transform: translateY(-3px);
   box-shadow: 0 10px 20px rgba(91, 46, 255, 0.3);
 }
+
 
 /* Footer */
 footer {
